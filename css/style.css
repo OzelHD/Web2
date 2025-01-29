@@ -1,0 +1,139 @@
+/* ========== General Body Styling ========== */
+body {
+    margin: 0;
+    background: #101820;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+/* ========== Hamburger Button Styling ========== */
+#menuButton {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: 40px;
+    height: 40px;
+    background: #af6709;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 9999; /* on top */
+}
+
+/* ========== Draggable Menu ========== */
+#menuContent {
+    position: absolute; /* so we can move it around */
+    top: 60px;
+    left: 60px;
+    width: 320px;
+    padding: 15px;
+    background: #28353a;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    display: none; /* Hidden by default */
+    z-index: 9998;
+    cursor: move;  /* "move" cursor indicates draggable */
+}
+
+#menuContent h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    cursor: default; /* don't highlight text on drag */
+}
+
+#menuContent ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#menuContent li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+
+#menuContent .latex {
+    font-size: 16px;
+    flex: 1;
+}
+
+#menuContent .example {
+    font-size: 14px;
+    color: #ff9100;
+    margin-left: 15px;
+    flex: 1;
+}
+
+/* ========== Output Box & Textarea ========== */
+#outputBox {
+    margin-bottom: 20px;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #fff;
+    background: #28353a;
+    color: white;
+    border-radius: 16px;
+    width: 300px;
+    min-height: 40px;
+    text-align: center;
+    white-space: pre-wrap;
+    resize: both;
+    overflow: auto;
+    text-align: center;
+}
+
+textarea {
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #fff;
+    background: #28353a;
+    color: white;
+    border-radius: 16px;
+    width: 300px;
+    height: 20px;
+    resize: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    transition: border-color 0.6s ease-in-out;
+    text-align: center;
+}
+
+textarea:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #ff9100;
+}
+
+
+
+
+/* Canvas (if you use it) */
+#myCanvas {
+    margin-bottom: 20px;
+    background: #101820;
+}
+
+/* Hide the scrollbar but keep it functional */
+textarea::-webkit-scrollbar {
+    display: none; /* For WebKit browsers (Chrome, Safari) */
+}
+
+textarea {
+    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+    scrollbar-width: none; /* For Firefox */
+}

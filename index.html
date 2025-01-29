@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Load the CSS from ./css/style.css -->
+  <link rel="stylesheet" href="./css/style.css">
+
+  <!-- Polyfill + MathJax -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async 
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+</head>
+
+<body>
+  <!-- Hamburger Button -->
+  <button id="menuButton">☰</button>
+
+  <!-- Draggable Menu (hidden by default) -->
+  <div id="menuContent">
+    <h3>Syntax Guide</h3>
+    <ul>
+      <!-- Summation -->
+      <li><span class="latex">\( \sum_{i=0}^{n} i \)</span><span class="example">sum(i=0, n) i</span></li>
+      <!-- Product -->
+      <li><span class="latex">\( \prod_{i=1}^{n} i \)</span><span class="example">prod(i=1, n) i</span></li>
+      <!-- Limit -->
+      <li><span class="latex">\( \lim_{x \to \infty} \frac{1}{x} \)</span><span class="example">lim(x -> inf) 1/x</span></li>
+      <!-- Derivative -->
+      <li><span class="latex">\( \frac{dy}{dx} \)</span><span class="example">dy/dx</span></li>
+      <!-- Integrals -->
+      <li><span class="latex">\( \int_{a}^{b} f(x) \, dx \)</span><span class="example">int(a, b) f(x) dx</span></li>
+      <li><span class="latex">\( \int f(x) \, dx \)</span><span class="example">int f(x) dx</span></li>
+      <!-- Fractions -->
+      <li><span class="latex">\( \frac{a}{b} \)</span><span class="example">(a) / (b)</span></li>
+      <!-- Greek Letters -->
+      <li><span class="latex">\( \alpha, \beta, \gamma, \theta \)</span><span class="example">alpha, beta, gamma, theta</span></li>
+      <!-- Exponentials -->
+      <li><span class="latex">\( e^x \)</span><span class="example">exp(x)</span></li>
+      <!-- Inequalities -->
+      <li><span class="latex">\( x \leq y, x \geq y, x \neq y \)</span><span class="example">x <= y, x >= y, x != y</span></li>
+      <!-- Infinity -->
+      <li><span class="latex">\( \infty, -\infty \)</span><span class="example">inf, minf</span></li>
+    </ul>
+  </div>
+  
+
+  <!-- Your Canvas, Output Box, and Input Textarea -->
+  <canvas id="myCanvas" width="400" height="400"></canvas>
+  <div id="outputBox" class ="dynamic-grow"></div>
+  <textarea id="inputText" placeholder="Enter text here"></textarea>
+
+  <!-- Load the JS from ../code/LaTeX.js last -->
+  <script src="./code/LaTeX.js"></script>
+</body>
+</html>
