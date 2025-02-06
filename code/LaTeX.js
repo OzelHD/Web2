@@ -1,5 +1,3 @@
-// LaTeX.js
-
 // Grab references to elements
 const inputText   = document.getElementById("inputText");
 const outputBox   = document.getElementById("outputBox");
@@ -9,9 +7,6 @@ const menuContent = document.getElementById("menuContent");
 /**
  * A dictionary that maps spelled-out Greek words (in uppercase/lowercase)
  * to the correct LaTeX code (or an equivalent character).
- *
- * Note: Some uppercase Greek letters match standard math commands (e.g. \Gamma),
- * but many do not exist (like \Alpha or \Beta), so we map them to normal letters (A, B, etc.).
  */
 const GREEK_MAP = {
   // Lowercase
@@ -29,7 +24,7 @@ const GREEK_MAP = {
   "mu":       "\\mu",
   "nu":       "\\nu",
   "xi":       "\\xi",
-  "omicron":  "o",           // No \omicron in standard LaTeX; treat as letter ‘o’
+  "omicron":  "o", // not in standard LaTeX
   "pi":       "\\pi",
   "rho":      "\\rho",
   "sigma":    "\\sigma",
@@ -41,8 +36,8 @@ const GREEK_MAP = {
   "omega":    "\\omega",
 
   // Uppercase
-  "Alpha":    "A",           // No \Alpha
-  "Beta":     "B",           // No \Beta
+  "Alpha":    "A",
+  "Beta":     "B",
   "Gamma":    "\\Gamma",
   "Delta":    "\\Delta",
   "Epsilon":  "E",
@@ -55,7 +50,7 @@ const GREEK_MAP = {
   "Mu":       "M",
   "Nu":       "N",
   "Xi":       "\\Xi",
-  "Omicron":  "O",           // no \Omicron
+  "Omicron":  "O",
   "Pi":       "\\Pi",
   "Rho":      "P",
   "Sigma":    "\\Sigma",
@@ -78,7 +73,6 @@ inputText.addEventListener("keydown", (evt) => {
  * Convert user input (custom syntax) to LaTeX
  */
 function convertToLaTeX(input) {
-
   // ============= 1) Derivatives  =============
   //  d(var1)/d(var2) => \frac{dvar1}{dvar2}
   let latex = input.replace(
@@ -88,7 +82,6 @@ function convertToLaTeX(input) {
 
   // ============= 2) exp(...) => e^{...}  =============
   latex = latex.replace(/exp\((.*?)\)/g, (_, inside) => `e^{${inside}}`);
-  
 
   // ============= 3) Limits: lim(x -> inf) ... =============
   const limitRegex = /lim\s*\(\s*([a-zA-Z]+)\s*->\s*(\w+)\)\s+(.*)/g;
@@ -105,39 +98,37 @@ function convertToLaTeX(input) {
   // ============= 4) Plain "inf" => \infty, "minf" => -\infty  =============
   latex = latex.replace(/\bminf\b/g, "-\\infty");
   latex = latex.replace(/\binf\b/g, "\\infty");
-  latex = latex.replace(/\*/g, "{*}");
 
   // ============= 5) Greek letters by dictionary  =============
-  // Build a regex that matches any of our GREEK_MAP keys, e.g. \b(Alpha|alpha|Beta|beta|...)\b
   const greekPattern = "\\b(" + Object.keys(GREEK_MAP).join("|") + ")\\b";
   const greekRegex = new RegExp(greekPattern, "g");
-  latex = latex.replace(greekRegex, (full, group) => {
+  latex = latex.replace(greekRegex, (match, group) => {
     return GREEK_MAP[group];
   });
 
   // ============= 6) Basic text replacements =============
-  latex = latex
-    // x^2 => x^{2} for digits
-    .replace(/\^\((.*?)\)/g, "^{($1)}")
-    // Brüche
-    // Handle all fraction cases, including (a)/(b), a/(bcd), (abc)/d, a/sqrt(...), and sqrt(...)/a
-    .replace(/\(\s*([^()]+)\s*\)\s*\/\s*\(\s*([^()]+)\s*\)/g, "\\frac{$1}{$2}") // (a)/(b)
-    .replace(/\(\s*([^()]+)\s*\)\s*\/\s*([^()\s]+)/g, "\\frac{$1}{$2}") // (abc)/d
-    .replace(/([^()\s]+)\s*\/\s*\(\s*([^()]+)\s*\)/g, "\\frac{$1}{$2}") // a/(bcd)
-    .replace(/([^()\s]+)\s*\/\s*(sqrt\([^()]+\))/g, "\\frac{$1}{$2}") // a/sqrt(...)
-    .replace(/(sqrt\([^()]+\))\s*\/\s*([^()\s]+)/g, "\\frac{$1}{$2}") // sqrt(...)/a
-    .replace(/([^()\s]+)\s*\/\s*([^()\s]+)/g, "\\frac{$1}{$2}") // a/b
+  // * => \cdot
+  latex = latex.replace(/\*/g, "\\cdot");
 
-    
-    
-    // sqrt(...) => \sqrt{...}
-    .replace(/sqrt\((.*?)\)/g, "\\sqrt{$1}")
-    // * => \cdot
-    .replace(/\*/g, "\\cdot")
-    // inequalities
-    .replace(/<=/g, "\\leq")
-    .replace(/>=/g, "\\geq")
-    .replace(/!=/g, "\\neq");
+  // inequalities
+  latex = latex.replace(/<=/g, "\\leq")
+               .replace(/>=/g, "\\geq")
+               .replace(/!=/g, "\\neq");
+
+  // x^(...) => x^{...}
+  latex = latex.replace(/\^\((.*?)\)/g, "^{($1)}");
+
+  // Fractions & sqrt
+  // (a)/(b)  => \frac{a}{b}
+  latex = latex.replace(/\(\s*([^()]+)\s*\)\s*\/\s*\(\s*([^()]+)\s*\)/g, "\\frac{$1}{$2}")
+               .replace(/\(\s*([^()]+)\s*\)\s*\/\s*([^()\s]+)/g, "\\frac{$1}{$2}")
+               .replace(/([^()\s]+)\s*\/\s*\(\s*([^()]+)\s*\)/g, "\\frac{$1}{$2}")
+               .replace(/([^()\s]+)\s*\/\s*(sqrt\([^()]+\))/g, "\\frac{$1}{$2}")
+               .replace(/(sqrt\([^()]+\))\s*\/\s*([^()\s]+)/g, "\\frac{$1}{$2}")
+               .replace(/([^()\s]+)\s*\/\s*([^()\s]+)/g, "\\frac{$1}{$2}");
+
+  // sqrt(...) => \sqrt{...}
+  latex = latex.replace(/sqrt\((.*?)\)/g, "\\sqrt{$1}");
 
   // ============= 7) Integrals  =============
   // int_{a}^{b} ...
@@ -195,22 +186,10 @@ function convertToLaTeX(input) {
     return `\\prod_{${lower}}^{${upper}} ${expr}`;
   });
 
-  // ============= 10) Fractions =============
-  // (expr)/(expr)
-  const parenFracRegex = /\(\s*([^()]+)\s*\)\s*\/\s*\(\s*([^()]+)\s*\)/g;
-  latex = latex.replace(parenFracRegex, (_, num, den) => {
-    return `\\frac{${num}}{${den}}`;
-  });
-  // simpler "a/b"
-  const fractionRegex = /(\b[a-zA-Z0-9]+)\s*\/\s*(\b[a-zA-Z0-9]+)/g;
-  latex = latex.replace(fractionRegex, (_, num, den) => {
-    return `\\frac{${num}}{${den}}`;
-  });
-
-  // ============= 11) +- => \pm =============
+  // ============= 10) +- => \pm =============
   latex = latex.replace(/\+\-/g, "\\pm");
 
-  // ============= 12) Wrap everything in \( ... \) =============
+  // ============= 11) Wrap everything in \( ... \) =============
   return `\\(${latex}\\)`;
 }
 
@@ -230,15 +209,42 @@ menuButton.addEventListener("click", () => {
   }
 });
 
-/** Convert user input => LaTeX => show in outputBox */
+/**
+ * Convert user input => LaTeX => show in outputBox
+ * Also store the final LaTeX string in data-latex for copying.
+ */
 inputText.addEventListener("input", () => {
   const userInput   = inputText.value;
   const latexOutput = convertToLaTeX(userInput);
+
+  // Put the LaTeX into outputBox visually
   outputBox.innerHTML = latexOutput;
+
+  // Store the final LaTeX string in a data-attribute (for copying)
+  outputBox.dataset.latex = latexOutput;
+
+  // Re-render the math
   renderMath(outputBox);
 });
 
-/* ========== Make the menu draggable ========== */
+/**
+ * When the outputBox is clicked, copy the LaTeX string (raw) to the clipboard.
+ */
+outputBox.addEventListener("click", () => {
+  const latexToCopy = outputBox.dataset.latex;
+  if (!latexToCopy) return;
+
+  // Use the Clipboard API
+  navigator.clipboard.writeText(latexToCopy)
+    .then(() => {
+      console.log("Copied to clipboard: ", latexToCopy);
+    })
+    .catch(err => {
+      console.error("Failed to copy: ", err);
+    });
+});
+
+// ========== Make the menu draggable ==========
 (function enableMenuDrag() {
   let offsetX = 0, offsetY = 0;
   let dragging = false;
