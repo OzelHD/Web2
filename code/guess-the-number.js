@@ -61,12 +61,12 @@ function startFlashingAnimation() {
     
     
     document.body.style.backgroundColor = randomColor;
-    document.body.style.transition = "background-color 0.9s ease-in-out";    
+    document.body.style.transition = "background-color 0.3s ease-in-out";    
     /*
     inputText.style.backgroundColor = randomColor;
     outputBox.style.backgroundColor = randomColor;
     */
-  }, 300);
+  }, 180);
 }
 
 
