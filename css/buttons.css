@@ -1,115 +1,114 @@
 /* Base styling for all toggle buttons */
 .toggleButton {
-    width: 40px;
-    height: 40px;
-    background: #ff9100;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    font-size: 16px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-    z-index: 10002;
-  }
+  width: 40px;
+  height: 40px;
+  background: #ff9100;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  z-index: 10002;
+}
 
-  
-  /* Positioning for left-aligned buttons */
-  .leftButton {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-  }
-  
-  /* Positioning for right-aligned buttons */
-  .rightButton {
-    position: fixed;
-    background: #ff0000;
-    top: 10px;
-    right: 10px;
-  }
-  
-  /* CSS for the Syntax Menu Content */
-  #menuContentIND, #menuContentGOL , #menuContentGTN {
-    position: absolute;
-    top: 60px;
-    left: 10px;
-    width: 320px;
-    padding: 15px;
-    background: #28353a;
-    color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-    display: none;
-    z-index: 10001;
-    cursor: move;
-  }
-  
-  #menuContentIND h3, #menuContentGOL h3, #menuContentGTN h3 {
-    margin: 0 0 10px;
-    font-size: 18px;
-  }
-  
-  #menuContentIND ul, #menuContentGOL ul, #menuContentGTN  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  #menuContentIND li, #menuContentGOL li, #menuContentGTN  li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 10px 0;
-  }
-  
-  #menuContentIND .latex, #menuContentGOL .latex, #menuContentGTN  .latex {
-    font-size: 16px;
-    flex: 1;
-  }
-  
-  #menuContentIND .example, #menuContentGOL .example, #menuContentGTN  .example {
-    font-size: 14px;
-    color: #ff9100;
-    margin-left: 15px;
-    flex: 1;
-  }
-  
-  /* CSS for the Navigator Menu Content */
-  #navigatorContent {
-    position: absolute;
-    top: 60px;
-    right: 10px;
-    width: 250px;
-    padding: 15px;
-    background: #28353a;
-    color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-    display: none;
-    z-index: 9999;
-    cursor: move;
-  }
-  
-  #navigatorContent h3{
-    margin: 0 0 10px;
-    font-size: 18px;
-  }
-  
-  #navigatorContent ul{
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  #navigatorContent li{
-    margin: 10px 0;
-  }
-  
-  #navigatorContent a{
-    color: #ff9100;
-    text-decoration: none;
-  }
-  
+
+/* Positioning for left-aligned buttons */
+.leftButton {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
+
+/* Positioning for right-aligned buttons */
+.rightButton {
+  position: fixed;
+  background: #ff0000;
+  top: 10px;
+  right: 10px;
+}
+
+/* CSS for the Syntax Menu Content */
+#menuContentIND, #menuContentGOL , #menuContentGTN {
+  position: absolute;
+  top: 60px;
+  left: 10px;
+  width: 320px;
+  padding: 15px;
+  background: #28353a;
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  display: none;
+  z-index: 10001;
+  cursor: move;
+}
+
+#menuContentIND h3, #menuContentGOL h3, #menuContentGTN h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+#menuContentIND ul, #menuContentGOL ul, #menuContentGTN  ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#menuContentIND li, #menuContentGOL li, #menuContentGTN  li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+
+#menuContentIND .latex, #menuContentGOL .latex, #menuContentGTN  .latex {
+  font-size: 16px;
+  flex: 1;
+}
+
+#menuContentIND .example, #menuContentGOL .example, #menuContentGTN  .example {
+  font-size: 14px;
+  color: #ff9100;
+  margin-left: 15px;
+  flex: 1;
+}
+
+/* CSS for the Navigator Menu Content */
+#navigatorContent {
+  position: absolute;
+  top: 60px;
+  right: 10px;
+  width: 250px;
+  padding: 15px;
+  background: #28353a;
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  display: none;
+  z-index: 9999;
+  cursor: move;
+}
+
+#navigatorContent h3{
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+#navigatorContent ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#navigatorContent li{
+  margin: 10px 0;
+}
+
+#navigatorContent a{
+  color: #ff9100;
+  text-decoration: none;
+}

@@ -237,4 +237,3 @@ outputBox.addEventListener("click", () => {
       console.error("Failed to copy: ", err);
     });
 });
-

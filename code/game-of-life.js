@@ -232,4 +232,3 @@ document.querySelector("#menuContentGOL").addEventListener("click", (e) => {
     applyPreset(preset);
   }
 });
-
