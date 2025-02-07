@@ -1,8 +1,11 @@
+//LaTeX.js
+
 // Grab references to elements
 const inputText   = document.getElementById("inputText");
 const outputBox   = document.getElementById("outputBox");
-const menuButton  = document.getElementById("menuButton");
-const menuContent = document.getElementById("menuContent");
+const menuButton  = document.getElementById("syntaxMenuButton");
+const menuContent = document.getElementById("syntaxMenuContent");
+
 
 /**
  * A dictionary that maps spelled-out Greek words (in uppercase/lowercase)
@@ -205,7 +208,7 @@ menuButton.addEventListener("click", () => {
   } else {
     menuContent.style.display = "block";
     // Re-render LaTeX in the menu
-    MathJax.typesetPromise([menuContent]).catch(err => console.error(err));
+    MathJax.typesetPromise([syntaxMenuContent]).catch(err => console.error(err));
   }
 });
 
@@ -249,11 +252,11 @@ outputBox.addEventListener("click", () => {
   let offsetX = 0, offsetY = 0;
   let dragging = false;
 
-  // Entire #menuContent is the "drag handle"
-  menuContent.addEventListener("mousedown", (e) => {
+  // Entire #syntaxMenuContent is the "drag handle"
+  syntaxMenuContent.addEventListener("mousedown", (e) => {
     dragging = true;
-    offsetX = e.clientX - menuContent.offsetLeft;
-    offsetY = e.clientY - menuContent.offsetTop;
+    offsetX = e.clientX - syntaxMenuContent.offsetLeft;
+    offsetY = e.clientY - syntaxMenuContent.offsetTop;
     // Listen for mousemove/up on document
     document.addEventListener("mousemove", dragMenu);
     document.addEventListener("mouseup", dropMenu);
@@ -261,8 +264,8 @@ outputBox.addEventListener("click", () => {
 
   function dragMenu(e) {
     if (!dragging) return;
-    menuContent.style.left = (e.clientX - offsetX) + "px";
-    menuContent.style.top  = (e.clientY - offsetY) + "px";
+    syntaxMenuContent.style.left = (e.clientX - offsetX) + "px";
+    syntaxMenuContent.style.top  = (e.clientY - offsetY) + "px";
   }
 
   function dropMenu() {

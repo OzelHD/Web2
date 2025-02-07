@@ -11,9 +11,9 @@ const ctx = canvas.getContext("2d");
 canvas.width = cols * cellSize;
 canvas.height = rows * cellSize;
 
-// Define the colors for alive cells and grid lines
-const aliveColor = "#000000";
-const gridColor  = "#1b2631"; 
+// Define the colors for alive cells and grid lines (using hexadecimal values)
+const aliveColor = "#ff9100"; // for example, a bright orange
+const gridColor  = "#1b2631"; // the blue you always use
 
 // Initialize the grid with random states (~20% live)
 let grid = Array.from({ length: rows }, () =>
@@ -77,7 +77,9 @@ let timerId = null;
 function getDelayFromSpeed(speedVal) {
   if (speedVal === 1) return 100;
   if (speedVal === 2) return 50;
-  if (speedVal === 3) return 30;
+  if (speedVal === 3) return 33;
+  if (speedVal === 4) return 25;
+  if (speedVal === 5) return 20;
   return null; // pause when speedVal is 0
 }
 
@@ -232,7 +234,7 @@ document.querySelector("#menuContent").addEventListener("click", (e) => {
 });
 
 /* ------------------ Hamburger Menu Toggle ------------------ */
-document.getElementById("menuButton").addEventListener("click", () => {
+document.getElementById("syntaxMenuButton").addEventListener("click", () => {
   const menu = document.getElementById("menuContent");
   menu.style.display = (menu.style.display === "block") ? "none" : "block";
 });

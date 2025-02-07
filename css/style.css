@@ -14,7 +14,7 @@ body {
   }
   
   /* ========== Hamburger Button Styling ========== */
-  #menuButton {
+  #syntaxMenuButton {
     position: fixed;
     top: 10px;
     left: 10px;
@@ -34,7 +34,7 @@ body {
   }
   
   /* ========== Draggable Menu ========== */
-  #menuContent {
+  #syntaxMenuContent {
     position: absolute; /* so we can move it around */
     top: 60px;
     left: 60px;
@@ -189,3 +189,25 @@ input[type="range"]::-moz-range-thumb {
   cursor: pointer;
 }
 
+#pageList {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: rgba(40, 53, 58, 0.9); /* dark background */
+  padding: 10px;
+  border-radius: 8px;
+  z-index: 10000;
+  font-family: Arial, sans-serif;
+}
+#pageList ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#pageList li {
+  margin: 5px 0;
+}
+#pageList a {
+  color: #ff9100;
+  text-decoration: none;
+}

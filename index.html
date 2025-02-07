@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Home</title>
-  <link rel="icon" type="image/x-icon" href="/icons/icons8-favicon-96.ico">
+  <!--<link rel="icon" type="image/x-icon" href="/icons/icons8-favicon-96.ico">-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Load external CSS -->
@@ -17,8 +17,9 @@
     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
   ></script>
   
+  <!-- CSS for the Left (existing) Burger Menu -->
   <style>
-    /* === Existing (Left) Burger Menu (Syntax Guide) Styles === */
+    /* Left Burger (Syntax Guide) */
     #menuButton {
       position: fixed;
       top: 10px;
@@ -35,7 +36,7 @@
       justify-content: center;
       align-items: center;
       box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-      z-index: 9999;
+      z-index: 10002;  /* slightly higher to ensure clickability */
     }
     #menuContent {
       position: absolute;
@@ -48,7 +49,7 @@
       border-radius: 8px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.3);
       display: none;
-      z-index: 9998;
+      z-index: 10001;
       cursor: move;
     }
     #menuContent h3 {
@@ -76,8 +77,11 @@
       margin-left: 15px;
       flex: 1;
     }
-    
-    /* === New (Right) Navigation Burger Menu Styles === */
+  </style>
+  
+  <!-- CSS for the New (Red) Navigation Burger Menu -->
+  <style>
+    /* Right Navigation Burger Menu */
     #navBurgerButton {
       position: fixed;
       top: 10px;
@@ -132,9 +136,9 @@
   <!-- A simple link to the Games page -->
   <a href="games.html">Games</a>
   
-  <!-- Existing Hamburger Menu (Left) for Syntax Guide -->
-  <button id="menuButton">☰</button>
-  <div id="menuContent">
+  <!-- Left Burger Menu (Syntax Guide) -->
+<button id="syntaxMenuButton">☰</button>
+  <div id="syntaxMenuContent">
     <h3>Syntax Guide</h3>
     <ul>
       <!-- Summation -->
@@ -194,19 +198,19 @@
     </ul>
   </div>
   
-  <!-- New Navigation Burger Menu (Right) for Directory Links -->
+  <!--Right Navigation Burger Menu -->
+   
   <button id="navBurgerButton">☰</button>
   <div id="navMenuContent">
     <h3>Pages</h3>
     <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="game-of-life.html">Game of Life</a></li>
-      <li><a href="games.html">Games Menue (WIP)</a></li>
-      
     </ul>
   </div>
   
-  <!-- Rest of your content -->
+  
+  
   <canvas id="myCanvas" width="400" height="400"></canvas>
   <div id="outputBox" class="dynamic-grow"></div>
   <textarea id="inputText" placeholder="Enter text here"></textarea>
@@ -214,53 +218,27 @@
   <!-- Load external JS file -->
   <script src="./code/LaTeX.js"></script>
   
+  <!-- JavaScript for Left Burger Menu (Syntax Guide) -->
   <script>
-    // --- Existing Syntax Guide Menu (Left) ---
-    document.getElementById("menuButton").addEventListener("click", () => {
-      const menu = document.getElementById("menuContent");
-      menu.style.display = (menu.style.display === "block") ? "none" : "block";
+    // Left menu toggle and drag functionality
+    const leftMenuButton = document.getElementById("menuButton");
+    const leftMenuContent = document.getElementById("menuContent");
+    
+    leftMenuButton.addEventListener("click", () => {
+      leftMenuContent.style.display = (leftMenuContent.style.display === "block") ? "none" : "block";
     });
-
+    
     (function () {
-      const menu = document.getElementById("menuContent");
-      let isDragging = false;
-      let offsetX, offsetY;
-      menu.addEventListener("mousedown", (e) => {
+      let isDragging = false, offsetX = 0, offsetY = 0;
+      leftMenuContent.addEventListener("mousedown", (e) => {
         isDragging = true;
-        offsetX = e.clientX - menu.offsetLeft;
-        offsetY = e.clientY - menu.offsetTop;
-        menu.style.zIndex = 10000;
+        offsetX = e.clientX - leftMenuContent.offsetLeft;
+        offsetY = e.clientY - leftMenuContent.offsetTop;
       });
       document.addEventListener("mousemove", (e) => {
         if (isDragging) {
-          menu.style.left = (e.clientX - offsetX) + "px";
-          menu.style.top = (e.clientY - offsetY) + "px";
-        }
-      });
-      document.addEventListener("mouseup", () => {
-        isDragging = false;
-      });
-    })();
-
-    // --- New Navigation Menu (Right) ---
-    document.getElementById("navBurgerButton").addEventListener("click", () => {
-      const navMenu = document.getElementById("navMenuContent");
-      navMenu.style.display = (navMenu.style.display === "block") ? "none" : "block";
-    });
-
-    (function () {
-      const navMenu = document.getElementById("navMenuContent");
-      let isDragging = false;
-      let offsetX, offsetY;
-      navMenu.addEventListener("mousedown", (e) => {
-        isDragging = true;
-        offsetX = e.clientX - navMenu.offsetLeft;
-        offsetY = e.clientY - navMenu.offsetTop;
-      });
-      document.addEventListener("mousemove", (e) => {
-        if (isDragging) {
-          navMenu.style.left = (e.clientX - offsetX) + "px";
-          navMenu.style.top = (e.clientY - offsetY) + "px";
+          leftMenuContent.style.left = (e.clientX - offsetX) + "px";
+          leftMenuContent.style.top = (e.clientY - offsetY) + "px";
         }
       });
       document.addEventListener("mouseup", () => {
@@ -268,5 +246,36 @@
       });
     })();
   </script>
+  
+  <!-- JavaScript for Right Navigation Burger Menu -->
+  <script>
+    // Right menu toggle and drag functionality
+    const navBurgerButton = document.getElementById("navBurgerButton");
+    const navMenuContent = document.getElementById("navMenuContent");
+    
+    navBurgerButton.addEventListener("click", () => {
+      navMenuContent.style.display = (navMenuContent.style.display === "block") ? "none" : "block";
+    });
+    
+    (function () {
+      let isDragging = false, offsetX = 0, offsetY = 0;
+      navMenuContent.addEventListener("mousedown", (e) => {
+        isDragging = true;
+        offsetX = e.clientX - navMenuContent.offsetLeft;
+        offsetY = e.clientY - navMenuContent.offsetTop;
+      });
+      document.addEventListener("mousemove", (e) => {
+        if (isDragging) {
+          navMenuContent.style.left = (e.clientX - offsetX) + "px";
+          navMenuContent.style.top = (e.clientY - offsetY) + "px";
+        }
+      });
+      document.addEventListener("mouseup", () => {
+        isDragging = false;
+      });
+    })();
+  </script>
+
+  
 </body>
 </html>
