@@ -13,73 +13,23 @@ body {
     font-family: Arial, sans-serif;
   }
   
-  /* ========== Hamburger Button Styling ========== */
-  #syntaxMenuButton {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    width: 40px;
-    height: 40px;
-    background: #af6709;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    font-size: 20px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    z-index: 9999; /* on top */
-  }
-  
-  /* ========== Draggable Menu ========== */
-  #syntaxMenuContent {
-    position: absolute; /* so we can move it around */
-    top: 60px;
-    left: 60px;
-    width: 320px;
-    padding: 15px;
+
+  #counterBox {
+    margin-bottom: 10px;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid greenyellow;
     background: #28353a;
     color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    display: none; /* Hidden by default */
-    z-index: 9998;
-    cursor: move;  /* "move" cursor indicates draggable */
+    border-radius: 16px;
+    width: 80px;
+    min-height: 40px;
+    text-align: center;
+    white-space: pre-wrap;
+    overflow: auto;
+    text-align: center;
+    cursor: pointer;
   }
-  
-  #menuContent h3 {
-    margin: 0 0 10px;
-    font-size: 18px;
-    cursor: default; /* don't highlight text on drag */
-  }
-  
-  #menuContent ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  #menuContent li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 10px 0;
-  }
-  
-  #menuContent .latex {
-    font-size: 16px;
-    flex: 1;
-  }
-  
-  #menuContent .example {
-    font-size: 14px;
-    color: #ff9100;
-    margin-left: 15px;
-    flex: 1;
-  }
-  
   /* ========== Output Box & Textarea ========== */
   #outputBox {
     margin-bottom: 20px;
@@ -96,8 +46,15 @@ body {
     resize: both;
     overflow: auto;
     text-align: center;
-    /* Make it visually clear it's clickable: */
     cursor: pointer;
+  }
+  #flashToggle {
+    width: 100px;
+    height: 60px;
+    background: #28353a;
+    color: white;
+    border: 2px solid white;
+    border-radius: 16px;
   }
   
   textarea {
@@ -123,20 +80,19 @@ body {
     border-color: #ff9100;
   }
   
-  /* Canvas (if you use it) */
+
   #myCanvas {
     margin-bottom: 20px;
     background: #101820;
   }
-  
-  /* Hide the scrollbar but keep it functional */
+
   textarea::-webkit-scrollbar {
-    display: none; /* For WebKit browsers (Chrome, Safari) */
+    display: none;
   }
   
   textarea {
-    -ms-overflow-style: none; /* For Internet Explorer and Edge */
-    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* Internet Explorer, Edge */
+    scrollbar-width: none; /* Firefox */
   }
   
   #gameView {
@@ -146,7 +102,7 @@ body {
     border: 5px solid #ff9100;
     display: block;
 }
-/* Style for the slider track and thumb */
+
 input[type="range"] {
   -webkit-appearance: none;
   width: 150px;
@@ -154,7 +110,7 @@ input[type="range"] {
   margin: 0 10px;
 }
 
-/* WebKit */
+
 input[type="range"]::-webkit-slider-runnable-track {
   height: 8px;
   background: #1b2631;
@@ -172,7 +128,7 @@ input[type="range"]::-webkit-slider-thumb {
   cursor: pointer;
 }
 
-/* Firefox */
+
 input[type="range"]::-moz-range-track {
   height: 8px;
   background: #274767;

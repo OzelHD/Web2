@@ -226,37 +226,10 @@ function applyPreset(preset) {
   drawGrid();
 }
 
-document.querySelector("#menuContent").addEventListener("click", (e) => {
+document.querySelector("#menuContentGOL").addEventListener("click", (e) => {
   if (e.target.tagName.toLowerCase() === "button") {
     const preset = e.target.getAttribute("data-preset");
     applyPreset(preset);
   }
 });
 
-/* ------------------ Hamburger Menu Toggle ------------------ */
-document.getElementById("syntaxMenuButton").addEventListener("click", () => {
-  const menu = document.getElementById("menuContent");
-  menu.style.display = (menu.style.display === "block") ? "none" : "block";
-});
-
-/* ------------------ Draggable Menu ------------------ */
-(function () {
-  const menu = document.getElementById("menuContent");
-  let isDragging = false;
-  let offsetX, offsetY;
-  menu.addEventListener("mousedown", (e) => {
-    isDragging = true;
-    offsetX = e.clientX - menu.offsetLeft;
-    offsetY = e.clientY - menu.offsetTop;
-    menu.style.zIndex = 10000;
-  });
-  document.addEventListener("mousemove", (e) => {
-    if (isDragging) {
-      menu.style.left = (e.clientX - offsetX) + "px";
-      menu.style.top = (e.clientY - offsetY) + "px";
-    }
-  });
-  document.addEventListener("mouseup", () => {
-    isDragging = false;
-  });
-})();

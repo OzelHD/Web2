@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Load external CSS -->
+  <link rel="stylesheet" href="./css/style.css">
+  <!-- CSS for the buttons -->
+  <link rel="stylesheet" href="./css/buttons.css">
+</head>
+
+
+
+
+
+<body>
+  
+
+    <button id="flashToggle" style="position: fixed; right: 20px; z-index: 1000; padding: 10px 20px; font-size: 16px; cursor: pointer;">
+        Disable Colors
+      </button>
+
+    <!-- Left Button (Syntax Guide) -->
+    <button id="menuButtonGTN" class="toggleButton leftButton">&#9776;</button>
+    <div id="menuContentGTN">
+      <h3>About this game</h3>
+      <ul>
+        <li>
+          <span class="example">"Try to guess the number between 0 and 1000."</span>
+        </li>
+      </ul>
+    </div>
+    
+    <!-- Right Button (Navigator Menu) -->
+    <button id="navigatorButton" class="toggleButton rightButton">&#9776;</button>
+    <div id="navigatorContent">
+      <h3>Pages</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="game-of-life.html">Game of Life</a></li>
+        <li><a href="guess-the-number.html">Guess the Number</a></li>
+      </ul>
+    </div>
+    
+    
+    
+    <div id="counterBox" class="dynamic-grow"></div>
+    <br>
+
+    <div id="outputBox" class="dynamic-grow"></div>
+    <textarea id="inputText" placeholder="Enter text here"></textarea>
+  
+    <script src="./code/guess-the-number.js"></script>
+    <script src="./code/buttons.js"></script>
+  </body>
+  </html>

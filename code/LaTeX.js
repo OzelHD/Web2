@@ -3,8 +3,8 @@
 // Grab references to elements
 const inputText   = document.getElementById("inputText");
 const outputBox   = document.getElementById("outputBox");
-const menuButton  = document.getElementById("syntaxMenuButton");
-const menuContent = document.getElementById("syntaxMenuContent");
+const menuButton  = document.getElementById("menuButton");
+const menuContent = document.getElementById("menuContent");
 
 
 /**
@@ -201,16 +201,7 @@ function renderMath(element) {
   MathJax.typesetPromise([element]).catch(err => console.error(err));
 }
 
-/** Show/hide the menu + re-render LaTeX in the menu when shown. */
-menuButton.addEventListener("click", () => {
-  if (menuContent.style.display === "block") {
-    menuContent.style.display = "none";
-  } else {
-    menuContent.style.display = "block";
-    // Re-render LaTeX in the menu
-    MathJax.typesetPromise([syntaxMenuContent]).catch(err => console.error(err));
-  }
-});
+
 
 /**
  * Convert user input => LaTeX => show in outputBox
@@ -247,30 +238,3 @@ outputBox.addEventListener("click", () => {
     });
 });
 
-// ========== Make the menu draggable ==========
-(function enableMenuDrag() {
-  let offsetX = 0, offsetY = 0;
-  let dragging = false;
-
-  // Entire #syntaxMenuContent is the "drag handle"
-  syntaxMenuContent.addEventListener("mousedown", (e) => {
-    dragging = true;
-    offsetX = e.clientX - syntaxMenuContent.offsetLeft;
-    offsetY = e.clientY - syntaxMenuContent.offsetTop;
-    // Listen for mousemove/up on document
-    document.addEventListener("mousemove", dragMenu);
-    document.addEventListener("mouseup", dropMenu);
-  });
-
-  function dragMenu(e) {
-    if (!dragging) return;
-    syntaxMenuContent.style.left = (e.clientX - offsetX) + "px";
-    syntaxMenuContent.style.top  = (e.clientY - offsetY) + "px";
-  }
-
-  function dropMenu() {
-    dragging = false;
-    document.removeEventListener("mousemove", dragMenu);
-    document.removeEventListener("mouseup", dropMenu);
-  }
-})();

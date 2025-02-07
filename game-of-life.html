@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Game of Life</title>
   <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/buttons.css">
   <style>
     /* Canvas & Controls */
     canvas {
@@ -25,53 +26,7 @@
     #speedControl { bottom: 10px; }
     #sizeControl { bottom: 60px; }
     
-    /* Left Burger Menu (Syntax Guide) */
-    #menuButton {
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      width: 40px;
-      height: 40px;
-      background: #af6709;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      font-size: 20px;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 10002;
-    }
-    #menuContent {
-      position: absolute;
-      top: 60px;
-      left: 10px;
-      width: 320px;
-      padding: 15px;
-      background: #28353a;
-      color: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-      display: none;
-      z-index: 10001;
-      cursor: move;
-    }
-    #menuContent h3 { margin: 0 0 10px; font-size: 18px; }
-    #menuContent ul { list-style: none; margin: 0; padding: 0; }
-    #menuContent li {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 10px 0;
-    }
-    #menuContent .latex { font-size: 16px; flex: 1; }
-    #menuContent .example {
-      font-size: 14px;
-      color: #ff9100;
-      margin-left: 15px;
-      flex: 1;
-    }
+    
     
     /* Static Page List in Top Right */
     #pageList {
@@ -87,63 +42,14 @@
     #pageList ul { list-style: none; margin: 0; padding: 0; }
     #pageList li { margin: 5px 0; }
     #pageList a { color: #ff9100; text-decoration: none; }
-
-    /* Right Navigation Burger Menu */
-    #navBurgerButton {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      width: 40px;
-      height: 40px;
-      background: red;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      font-size: 20px;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 10000;
-    }
-    #navMenuContent {
-      position: absolute;
-      top: 60px;
-      right: 10px;
-      width: 250px;
-      padding: 15px;
-      background: #28353a;
-      color: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-      display: none;
-      z-index: 9999;
-      cursor: move;
-    }
-    #navMenuContent h3 {
-      margin: 0 0 10px;
-      font-size: 18px;
-    }
-    #navMenuContent ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    #navMenuContent li {
-      margin: 10px 0;
-    }
-    #navMenuContent a {
-      color: #ff9100;
-      text-decoration: none;
-    }
   </style>
 </head>
 <body>
 
   
   <!-- Left Burger Menu (Syntax Guide) -->
-  <button id="menuButton">&#9776;</button>
-  <div id="menuContent">
+  <button id="menuButtonGOL" class="toggleButton leftButton">&#9776;</button>
+  <div id="menuContentGOL">
     <h3>Presets</h3>
     <ul>
       <li><button data-preset="glider">Glider</button></li>
@@ -158,12 +64,13 @@
 
     <!--Right Navigation Burger Menu -->
    
-    <button id="navBurgerButton">&#9776;</button>
-    <div id="navMenuContent">
+    <button id="navigatorButton" class="toggleButton rightButton">&#9776;</button>
+    <div id="navigatorContent">
       <h3>Pages</h3>
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="game-of-life.html">Game of Life</a></li>
+        <li><a href="guess-the-number.html">Guess the number</a></li>
       </ul>
     </div>
   
@@ -185,61 +92,8 @@
   
   <script src="./code/game-of-life.js"></script>
   
-  <!-- JavaScript for Left Burger Menu -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const menuButton = document.getElementById("menuButton");
-      const menuContent = document.getElementById("menuContent");
-      
-      if (menuButton && menuContent) {
-        menuButton.addEventListener("click", () => {
-          menuContent.style.display = (menuContent.style.display === "block") ? "none" : "block";
-        });
-        
-        let isDragging = false, offsetX = 0, offsetY = 0;
-        menuContent.addEventListener("mousedown", (e) => {
-          isDragging = true;
-          offsetX = e.clientX - menuContent.offsetLeft;
-          offsetY = e.clientY - menuContent.offsetTop;
-        });
-        document.addEventListener("mousemove", (e) => {
-          if (isDragging) {
-            menuContent.style.left = (e.clientX - offsetX) + "px";
-            menuContent.style.top = (e.clientY - offsetY) + "px";
-          }
-        });
-        document.addEventListener("mouseup", () => {
-          isDragging = false;
-        });
-      }
-    });
-
-    <!-- JavaScript for Right Navigation Burger Menu -->
-    // Right menu toggle and drag functionality
-    const navBurgerButton = document.getElementById("navBurgerButton");
-    const navMenuContent = document.getElementById("navMenuContent");
-    
-    navBurgerButton.addEventListener("click", () => {
-      navMenuContent.style.display = (navMenuContent.style.display === "block") ? "none" : "block";
-    });
-    
-    (function () {
-      let isDragging = false, offsetX = 0, offsetY = 0;
-      navMenuContent.addEventListener("mousedown", (e) => {
-        isDragging = true;
-        offsetX = e.clientX - navMenuContent.offsetLeft;
-        offsetY = e.clientY - navMenuContent.offsetTop;
-      });
-      document.addEventListener("mousemove", (e) => {
-        if (isDragging) {
-          navMenuContent.style.left = (e.clientX - offsetX) + "px";
-          navMenuContent.style.top = (e.clientY - offsetY) + "px";
-        }
-      });
-      document.addEventListener("mouseup", () => {
-        isDragging = false;
-      });
-    })();
-  </script>
 </body>
+
+<script src="./code/buttons.js"></script>
+
 </html>

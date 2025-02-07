@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>Home</title>
-  <!--<link rel="icon" type="image/x-icon" href="/icons/icons8-favicon-96.ico">-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Load external CSS -->
   <link rel="stylesheet" href="./css/style.css">
+  <!-- CSS for the buttons -->
+  <link rel="stylesheet" href="./css/buttons.css">
 
   <!-- Polyfill + MathJax -->
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -17,128 +18,12 @@
     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
   ></script>
   
-  <!-- CSS for the Left (existing) Burger Menu -->
-  <style>
-    /* Left Burger (Syntax Guide) */
-    #menuButton {
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      width: 40px;
-      height: 40px;
-      background: #af6709;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      font-size: 20px;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-      z-index: 10002;  /* slightly higher to ensure clickability */
-    }
-    #menuContent {
-      position: absolute;
-      top: 60px;
-      left: 60px;
-      width: 320px;
-      padding: 15px;
-      background: #28353a;
-      color: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-      display: none;
-      z-index: 10001;
-      cursor: move;
-    }
-    #menuContent h3 {
-      margin: 0 0 10px;
-      font-size: 18px;
-    }
-    #menuContent ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    #menuContent li {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 10px 0;
-    }
-    #menuContent .latex {
-      font-size: 16px;
-      flex: 1;
-    }
-    #menuContent .example {
-      font-size: 14px;
-      color: #ff9100;
-      margin-left: 15px;
-      flex: 1;
-    }
-  </style>
-  
-  <!-- CSS for the New (Red) Navigation Burger Menu -->
-  <style>
-    /* Right Navigation Burger Menu */
-    #navBurgerButton {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      width: 40px;
-      height: 40px;
-      background: red;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      font-size: 20px;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 10000;
-    }
-    #navMenuContent {
-      position: absolute;
-      top: 60px;
-      right: 10px;
-      width: 250px;
-      padding: 15px;
-      background: #28353a;
-      color: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-      display: none;
-      z-index: 9999;
-      cursor: move;
-    }
-    #navMenuContent h3 {
-      margin: 0 0 10px;
-      font-size: 18px;
-    }
-    #navMenuContent ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    #navMenuContent li {
-      margin: 10px 0;
-    }
-    #navMenuContent a {
-      color: #ff9100;
-      text-decoration: none;
-    }
-  </style>
-  
 </head>
 <body>
-  <!-- A simple link to the Games page -->
-  <a href="games.html">Games</a>
-  
-  <!-- Left Burger Menu (Syntax Guide) -->
-<button id="syntaxMenuButton">☰</button>
-  <div id="syntaxMenuContent">
+
+  <!-- Left Button (Syntax Guide) -->
+  <button id="menuButtonIND" class="toggleButton leftButton">&#9776;</button>
+  <div id="menuContentIND">
     <h3>Syntax Guide</h3>
     <ul>
       <!-- Summation -->
@@ -198,84 +83,23 @@
     </ul>
   </div>
   
-  <!--Right Navigation Burger Menu -->
-   
-  <button id="navBurgerButton">☰</button>
-  <div id="navMenuContent">
+  <!-- Right Button (Navigator Menu) -->
+  <button id="navigatorButton" class="toggleButton rightButton">&#9776;</button>
+  <div id="navigatorContent">
     <h3>Pages</h3>
     <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="game-of-life.html">Game of Life</a></li>
+      <li><a href="guess-the-number.html">Guess the Number</a></li>
     </ul>
   </div>
-  
-  
   
   <canvas id="myCanvas" width="400" height="400"></canvas>
   <div id="outputBox" class="dynamic-grow"></div>
   <textarea id="inputText" placeholder="Enter text here"></textarea>
 
-  <!-- Load external JS file -->
-  <script src="./code/LaTeX.js"></script>
-  
-  <!-- JavaScript for Left Burger Menu (Syntax Guide) -->
-  <script>
-    // Left menu toggle and drag functionality
-    const leftMenuButton = document.getElementById("menuButton");
-    const leftMenuContent = document.getElementById("menuContent");
-    
-    leftMenuButton.addEventListener("click", () => {
-      leftMenuContent.style.display = (leftMenuContent.style.display === "block") ? "none" : "block";
-    });
-    
-    (function () {
-      let isDragging = false, offsetX = 0, offsetY = 0;
-      leftMenuContent.addEventListener("mousedown", (e) => {
-        isDragging = true;
-        offsetX = e.clientX - leftMenuContent.offsetLeft;
-        offsetY = e.clientY - leftMenuContent.offsetTop;
-      });
-      document.addEventListener("mousemove", (e) => {
-        if (isDragging) {
-          leftMenuContent.style.left = (e.clientX - offsetX) + "px";
-          leftMenuContent.style.top = (e.clientY - offsetY) + "px";
-        }
-      });
-      document.addEventListener("mouseup", () => {
-        isDragging = false;
-      });
-    })();
-  </script>
-  
-  <!-- JavaScript for Right Navigation Burger Menu -->
-  <script>
-    // Right menu toggle and drag functionality
-    const navBurgerButton = document.getElementById("navBurgerButton");
-    const navMenuContent = document.getElementById("navMenuContent");
-    
-    navBurgerButton.addEventListener("click", () => {
-      navMenuContent.style.display = (navMenuContent.style.display === "block") ? "none" : "block";
-    });
-    
-    (function () {
-      let isDragging = false, offsetX = 0, offsetY = 0;
-      navMenuContent.addEventListener("mousedown", (e) => {
-        isDragging = true;
-        offsetX = e.clientX - navMenuContent.offsetLeft;
-        offsetY = e.clientY - navMenuContent.offsetTop;
-      });
-      document.addEventListener("mousemove", (e) => {
-        if (isDragging) {
-          navMenuContent.style.left = (e.clientX - offsetX) + "px";
-          navMenuContent.style.top = (e.clientY - offsetY) + "px";
-        }
-      });
-      document.addEventListener("mouseup", () => {
-        isDragging = false;
-      });
-    })();
-  </script>
 
-  
+  <script src="./code/LaTeX.js"></script>
+  <script src="./code/buttons.js"></script>
 </body>
 </html>
