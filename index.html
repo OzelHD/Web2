@@ -16,13 +16,124 @@
     async
     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
   ></script>
+  
+  <style>
+    /* === Existing (Left) Burger Menu (Syntax Guide) Styles === */
+    #menuButton {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      width: 40px;
+      height: 40px;
+      background: #af6709;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      z-index: 9999;
+    }
+    #menuContent {
+      position: absolute;
+      top: 60px;
+      left: 60px;
+      width: 320px;
+      padding: 15px;
+      background: #28353a;
+      color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      display: none;
+      z-index: 9998;
+      cursor: move;
+    }
+    #menuContent h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+    #menuContent ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    #menuContent li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 10px 0;
+    }
+    #menuContent .latex {
+      font-size: 16px;
+      flex: 1;
+    }
+    #menuContent .example {
+      font-size: 14px;
+      color: #ff9100;
+      margin-left: 15px;
+      flex: 1;
+    }
+    
+    /* === New (Right) Navigation Burger Menu Styles === */
+    #navBurgerButton {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      width: 40px;
+      height: 40px;
+      background: red;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+    }
+    #navMenuContent {
+      position: absolute;
+      top: 60px;
+      right: 10px;
+      width: 250px;
+      padding: 15px;
+      background: #28353a;
+      color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      display: none;
+      z-index: 9999;
+      cursor: move;
+    }
+    #navMenuContent h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+    #navMenuContent ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    #navMenuContent li {
+      margin: 10px 0;
+    }
+    #navMenuContent a {
+      color: #ff9100;
+      text-decoration: none;
+    }
+  </style>
+  
 </head>
-
 <body>
-  <!-- Hamburger Button -->
+  <!-- A simple link to the Games page -->
+  <a href="games.html">Games</a>
+  
+  <!-- Existing Hamburger Menu (Left) for Syntax Guide -->
   <button id="menuButton">☰</button>
-
-  <!-- Draggable Menu (hidden by default) -->
   <div id="menuContent">
     <h3>Syntax Guide</h3>
     <ul>
@@ -82,13 +193,80 @@
       </li>
     </ul>
   </div>
-
-  <!-- Your Canvas, Output Box, and Input Textarea -->
+  
+  <!-- New Navigation Burger Menu (Right) for Directory Links -->
+  <button id="navBurgerButton">☰</button>
+  <div id="navMenuContent">
+    <h3>Pages</h3>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="game-of-life.html">Game of Life</a></li>
+      <li><a href="games.html">Games Menue (WIP)</a></li>
+      
+    </ul>
+  </div>
+  
+  <!-- Rest of your content -->
   <canvas id="myCanvas" width="400" height="400"></canvas>
   <div id="outputBox" class="dynamic-grow"></div>
   <textarea id="inputText" placeholder="Enter text here"></textarea>
 
-  <!-- Load the JS file at the end of the body -->
+  <!-- Load external JS file -->
   <script src="./code/LaTeX.js"></script>
+  
+  <script>
+    // --- Existing Syntax Guide Menu (Left) ---
+    document.getElementById("menuButton").addEventListener("click", () => {
+      const menu = document.getElementById("menuContent");
+      menu.style.display = (menu.style.display === "block") ? "none" : "block";
+    });
+
+    (function () {
+      const menu = document.getElementById("menuContent");
+      let isDragging = false;
+      let offsetX, offsetY;
+      menu.addEventListener("mousedown", (e) => {
+        isDragging = true;
+        offsetX = e.clientX - menu.offsetLeft;
+        offsetY = e.clientY - menu.offsetTop;
+        menu.style.zIndex = 10000;
+      });
+      document.addEventListener("mousemove", (e) => {
+        if (isDragging) {
+          menu.style.left = (e.clientX - offsetX) + "px";
+          menu.style.top = (e.clientY - offsetY) + "px";
+        }
+      });
+      document.addEventListener("mouseup", () => {
+        isDragging = false;
+      });
+    })();
+
+    // --- New Navigation Menu (Right) ---
+    document.getElementById("navBurgerButton").addEventListener("click", () => {
+      const navMenu = document.getElementById("navMenuContent");
+      navMenu.style.display = (navMenu.style.display === "block") ? "none" : "block";
+    });
+
+    (function () {
+      const navMenu = document.getElementById("navMenuContent");
+      let isDragging = false;
+      let offsetX, offsetY;
+      navMenu.addEventListener("mousedown", (e) => {
+        isDragging = true;
+        offsetX = e.clientX - navMenu.offsetLeft;
+        offsetY = e.clientY - navMenu.offsetTop;
+      });
+      document.addEventListener("mousemove", (e) => {
+        if (isDragging) {
+          navMenu.style.left = (e.clientX - offsetX) + "px";
+          navMenu.style.top = (e.clientY - offsetY) + "px";
+        }
+      });
+      document.addEventListener("mouseup", () => {
+        isDragging = false;
+      });
+    })();
+  </script>
 </body>
 </html>

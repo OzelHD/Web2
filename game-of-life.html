@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Game of Life</title>
+  <link rel="stylesheet" href="./css/style.css" />
+  <style>
+    /* --- Existing (Left) Burger Menu (Presets) Styles --- */
+    #menuButton {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      width: 40px;
+      height: 40px;
+      background: #af6709;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    #menuContent {
+      position: absolute;
+      top: 60px;
+      left: 10px;
+      width: 320px;
+      padding: 15px;
+      background: #28353a;
+      color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      display: none;
+      z-index: 9998;
+      cursor: move;
+    }
+    #menuContent h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+    #menuContent ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    #menuContent li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 10px 0;
+    }
+    /* --- Controls & Canvas Styling --- */
+    canvas {
+      border: 1px solid black;
+      display: block;
+      margin: 0 auto;
+    }
+    #controls {
+      text-align: center;
+      margin-top: 10px;
+      font-family: Arial, sans-serif;
+    }
+    #speedControl, #sizeControl {
+      display: inline-block;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 5px 10px;
+      margin: 0 5px;
+      border-radius: 5px;
+      color: white;
+    }
+    
+    /* --- New (Right) Navigation Burger Menu Styles --- */
+    #navBurgerButton {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      width: 40px;
+      height: 40px;
+      background: red;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+    }
+    #navMenuContent {
+      position: absolute;
+      top: 60px;
+      right: 10px;
+      width: 250px;
+      padding: 15px;
+      background: #28353a;
+      color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      display: none;
+      z-index: 9999;
+      cursor: move;
+    }
+    #navMenuContent h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+    #navMenuContent ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    #navMenuContent li {
+      margin: 10px 0;
+    }
+    #navMenuContent a {
+      color: #ff9100;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Existing Hamburger Menu (Left) for Presets -->
+  <button id="menuButton">&#9776;</button>
+  <div id="menuContent">
+    <h3>Presets</h3>
+    <ul>
+      <li><button data-preset="glider">Glider</button></li>
+      <li><button data-preset="blinker">Blinker</button></li>
+      <li><button data-preset="block">Block</button></li>
+      <li><button data-preset="toad">Toad</button></li>
+      <li><button data-preset="random">Random</button></li>
+      <li><button data-preset="clear">Clear</button></li>
+      <li><button data-preset="gliderGun">Glider Gun</button></li>
+    </ul>
+  </div>
+  
+  <!-- New Navigation Burger Menu (Right) -->
+  <button id="navBurgerButton">☰</button>
+  <div id="navMenuContent">
+    <h3>Pages</h3>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="game-of-life.html">Game of Life</a></li>
+      <li><a href="games.html">Games Menue (WIP)</a></li>
+      
+    </ul>
+  </div>
+  
+  <h1 style="text-align:center;">G O L</h1>
+  <canvas id="gameView"></canvas>
+
+  <br>
+  
+  <!-- Controls Container -->
+  <div id="controls">
+    <div id="speedControl">
+      <label for="speedRange">Speed: </label>
+      <input type="range" id="speedRange" min="0" max="3" step="1" value="1" />
+      <span id="speedValue">1x</span>
+    </div>
+    <div id="sizeControl">
+      <label for="sizeRange">Size: </label>
+      <input type="range" id="sizeRange" min="10" max="100" step="10" value="50" />
+      <span id="sizeValue">50</span>
+    </div>
+  </div>
+
+  <br>
+  
+  <script src="./code/game-of-life.js"></script>
+  
+  <script>
+    // --- Existing Presets Menu (Left) ---
+    document.getElementById("menuButton").addEventListener("click", () => {
+      const menu = document.getElementById("menuContent");
+      menu.style.display = (menu.style.display === "block") ? "none" : "block";
+    });
+
+    (function () {
+      const menu = document.getElementById("menuContent");
+      let isDragging = false;
+      let offsetX, offsetY;
+      menu.addEventListener("mousedown", (e) => {
+        isDragging = true;
+        offsetX = e.clientX - menu.offsetLeft;
+        offsetY = e.clientY - menu.offsetTop;
+        menu.style.zIndex = 10000;
+      });
+      document.addEventListener("mousemove", (e) => {
+        if (isDragging) {
+          menu.style.left = (e.clientX - offsetX) + "px";
+          menu.style.top = (e.clientY - offsetY) + "px";
+        }
+      });
+      document.addEventListener("mouseup", () => {
+        isDragging = false;
+      });
+    })();
+
+    // --- New Navigation Menu (Right) ---
+    document.getElementById("navBurgerButton").addEventListener("click", () => {
+      const navMenu = document.getElementById("navMenuContent");
+      navMenu.style.display = (navMenu.style.display === "block") ? "none" : "block";
+    });
+
+    (function () {
+      const navMenu = document.getElementById("navMenuContent");
+      let isDragging = false;
+      let offsetX, offsetY;
+      navMenu.addEventListener("mousedown", (e) => {
+        isDragging = true;
+        offsetX = e.clientX - navMenu.offsetLeft;
+        offsetY = e.clientY - navMenu.offsetTop;
+      });
+      document.addEventListener("mousemove", (e) => {
+        if (isDragging) {
+          navMenu.style.left = (e.clientX - offsetX) + "px";
+          navMenu.style.top = (e.clientY - offsetY) + "px";
+        }
+      });
+      document.addEventListener("mouseup", () => {
+        isDragging = false;
+      });
+    })();
+  </script>
+</body>
+</html>
