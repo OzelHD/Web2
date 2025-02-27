@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Factory Progression Game</title>
+  <link rel="stylesheet" href="./css/Fac.css">
+  <link rel="stylesheet" href="./css/buttons.css">
+</head>
+<body>
+  <!-- Main game container -->
+  <div id="gameContainer">
+    <!-- Canvas for grid, resources, and buildings -->
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <!-- Hotbar for selecting building types -->
+    <div id="hotbar">
+      <button data-building="miner">Miner (3x3)</button>
+      <button data-building="constructor">Constructor (3x3)</button>
+      <button data-building="smelter">Smelter (1x3)</button>
+      <button data-building="storage">Storage (5x5)</button>
+    </div>
+  </div>
+  <script src="./code/Fac.js"></script>
+
+  <button id="navigatorButton" class="toggleButton rightButton">&#9776;</button>
+  <div id="navigatorContent">
+    <h3>Pages</h3>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="game-of-life.html">Game of Life</a></li>
+      <li><a href="guess-the-number.html">Guess the Number</a></li>
+      <li><a href="Fac.html">Factory game</a></li>
+    </ul>
+  </div>
+
+</body>
+<script src="./code/buttons.js"></script>
+</html>

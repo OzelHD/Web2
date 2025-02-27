@@ -32,7 +32,7 @@
 }
 
 /* CSS for the Syntax Menu Content */
-#menuContentIND, #menuContentGOL , #menuContentGTN {
+#menuContentIND, #menuContentGOL , #menuContentGTN, #menuContentMULTI {
   position: absolute;
   top: 60px;
   left: 10px;
@@ -47,18 +47,18 @@
   cursor: move;
 }
 
-#menuContentIND h3, #menuContentGOL h3, #menuContentGTN h3 {
+#menuContentIND h3, #menuContentGOL h3, #menuContentGTN h3, #menuContentMULTI h3 {
   margin: 0 0 10px;
   font-size: 18px;
 }
 
-#menuContentIND ul, #menuContentGOL ul, #menuContentGTN  ul {
+#menuContentIND ul, #menuContentGOL ul, #menuContentGTN  ul, #menuContentMULTI  ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-#menuContentIND li, #menuContentGOL li, #menuContentGTN  li {
+#menuContentIND li, #menuContentGOL li, #menuContentGTN  li, #menuContentMULTI  li {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -70,7 +70,7 @@
   flex: 1;
 }
 
-#menuContentIND .example, #menuContentGOL .example, #menuContentGTN  .example {
+#menuContentIND .example, #menuContentGOL .example, #menuContentGTN  .example , #menuContentMULTI  .example {
   font-size: 14px;
   color: #ff9100;
   margin-left: 15px;

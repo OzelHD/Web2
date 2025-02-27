@@ -1,0 +1,49 @@
+/* Fac.css */
+
+/* Basic page styles */
+body {
+  margin: 0;
+  overflow: hidden;
+  background: #222;
+  font-family: Arial, sans-serif;
+  color: #fff;
+}
+
+/* Container for the game canvas and UI */
+#gameContainer {
+  position: relative;
+  width: 800px;
+  height: 600px;
+  margin: 0 auto;
+  border: 1px solid #555;
+  background: #111;
+}
+
+/* Canvas that shows the grid and game objects */
+#gameCanvas {
+  display: block;
+  background: #333;
+}
+
+/* Hotbar styling */
+#hotbar {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+#hotbar button {
+  padding: 5px 10px;
+  background: #555;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  outline: none;
+}
+
+#hotbar button.active {
+  background: #888;
+}

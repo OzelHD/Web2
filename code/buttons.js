@@ -50,4 +50,6 @@ document.addEventListener("DOMContentLoaded", function() {
   setupToggleAndDrag("menuButtonGOL", "menuContentGOL");
 
   setupToggleAndDrag("menuButtonGTN", "menuContentGTN");
+
+  setupToggleAndDrag("menuButtonMULTI", "menuContentMULTI");
 });
