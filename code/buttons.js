@@ -1,3 +1,5 @@
+/* buttons.js*/
+
 /**
  * Sets up toggle visibility and drag functionality for a given button and its content.
  * @param {string} buttonId

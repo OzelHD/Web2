@@ -1,0 +1,197 @@
+body {
+    background-color: #101820;
+  }
+
+/* Reset margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  /* Header styling */
+  
+
+/* Header styling */
+.header {
+    position: fixed;
+    margin-left: 250px;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: #101820;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  body.collapsed .header {
+    margin-left: 0;
+  }
+
+/* Sidebar styling */
+.sidebar {
+    position: fixed;
+    top: 60px; /* Leave space for the header */
+    bottom: 0;
+    left: 0;
+    width: 250px;
+    background: #101820;
+    color: #fff;
+    padding: 1rem;
+    z-index: 900;
+    transition: width 0.3s ease-in-out, padding 0.3s ease;
+    overflow: hidden;
+  }
+
+/* Container for sidebar content */
+  .sidebar .sidebar-content {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+
+  .toggle-sidebar-btn {
+    width: 40px;
+    height: 40px;
+    background: #ff9100;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    z-index: 991;
+    transition: left 0.3s ease;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  }
+
+  .sidebar.collapsed {
+    width: 0;
+    padding: 0;
+  }
+
+  .sidebar.collapsed .sidebar-content {
+    opacity: 0;
+  }
+
+
+  .main-content {
+    margin-top: 60px;
+    margin-left: 250px;
+    padding: 1rem;
+    background: #101820;
+    color: #ccc;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Prevents vertical stretching */
+    transition: margin-left 0.3s ease;
+  }
+
+  body.collapsed .main-content {
+    margin-left: 0;
+  }
+
+  /* Footer styling */
+  .footer {
+    grid-area: footer;
+    margin-left: 250px;
+    background: #101820;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    z-index: 901;
+  }
+  body.collapsed .footer {
+    margin-left: 0;
+  }
+  
+
+  
+  :root {
+    --main-bg-color: #1e1f26;
+    --main-text-color: #ccc;
+  }
+
+  .example {
+    font-size: 14px;
+    color: #ff9100;
+    margin-left: 15px;
+    flex: 1;
+  }
+
+
+  /* Style the accordion button */
+  .accordion-btn {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 16px;
+    padding: 0.75rem;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+  }
+  
+  .accordion-btn {
+    transition: background 0.4s ease-in-out, color 0.8s ease-in-out;
+  }
+  
+  .accordion-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ff9100;
+  }
+
+  .accordion-menu {
+    list-style-type: none; /* or list-style: none; */
+    
+    margin: 0;
+    padding: 0;
+  }
+
+  
+  .accordion-menu li:hover {
+    border-left: 8px solid #ff9100
+  }
+  .accordion-panel ul li a {
+    margin-left: 0.5rem;
+  }
+  
+  /* Style for the collapsible panel */
+  .accordion-panel {
+    list-style-type: none;
+    display: none;
+    padding-left: 1rem; /* Indent nested links */
+  }
+  .accordion-panel ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .accordion-panel a {
+    color: #67cec4;           /* normal link color */
+    text-decoration: none; 
+  }
+  .accordion-panel a:hover {
+    color: #ff0095;        /* hover color */
+  }
+  
+  /* When a panel is active, show it */
+  .accordion-panel.active {
+    display: block;
+  }
+  
+  /* Optional: style for the link descriptions */
+  .link-desc {
+    display: block;
+    font-size: 12px;
+    color: #aaa;
+    margin-left: 0.5rem;
+  }
+  
+  
