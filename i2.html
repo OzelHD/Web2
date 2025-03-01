@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="./css/Multitest.css">
   <link rel="stylesheet" href="./css/clock.css">
   <link rel="stylesheet" href="./css/buttons.css">
+  <link rel="stylesheet" href="./css/tasks.css">
 </head>
 <body>
   <div class="container">
@@ -76,6 +77,19 @@
                         Anel Website
                       </a>
                       <span class="link-desc">Linalg 1, 2. Übungen und Lösungen.</span>
+                      <a href="https://sam-up.math.ethz.ch/?lecture=401-0171-00" target="_blank" rel="noopener noreferrer">
+                        Sam-Up
+                      </a>
+                      <span class="link-desc">Sam-Up braucht eine VPN Verbindung</span>
+                      <a href="https://echo.ethz.ch/s/" target="_blank" rel="noopener noreferrer">
+                        Echo
+                      </a>
+                      <span class="link-desc">Metaphor (Lektionenübersicht)</span>
+                      <a href="https://metaphor.ethz.ch/x/2025/fs/401-0172-00L/" target="_blank" rel="noopener noreferrer">
+                        Metaphor
+                      </a>
+                      <span class="link-desc">Linalg Metaphor</span>
+                    
                     </li>
                   </ul>
                 </div>
@@ -158,12 +172,46 @@
       <!-- Additional content here -->
       <div class="text-content">
         <p>
-            Wana get back?
+            Wanna get <a href="index.html">back</a></li>?
         </p>
-        <a href="index.html">Home</a></li>
-        <p>
-            .
-        </p>
+        
+        <div>
+          <textarea id="inputText" placeholder="Enter text here"></textarea>
+
+        </div>
+
+
+
+        <div class="task-timetable">
+          <table>
+            <thead>
+              <tr>
+                <th>Last Week</th>
+                <th>This Week</th>
+                <th>Next Week</th>
+                <th>In 2 Weeks</th>
+                <th>In 3 Weeks</th>
+              </tr>
+            </thead>
+            <tbody id="task-table-body">
+              <!-- Rows and cells will be dynamically filled by JS -->
+            </tbody>
+          </table>
+        </div>
+        
+        <!-- Popup/Modal for task details -->
+        <div id="task-info-popup" class="popup hidden">
+          <div class="popup-content">
+            <span id="popup-close-btn" class="close-btn">&times;</span>
+            <h3 id="popup-title"></h3>
+            <p><strong>Due date:</strong> <span id="popup-due-date"></span></p>
+            <p><strong>Description:</strong> <span id="popup-description"></span></p>
+            <p><strong>Upload link:</strong> <a id="popup-link" href="#" target="_blank">Open</a></p>
+          </div>
+        </div>
+
+        
+
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.
           Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.
@@ -217,4 +265,6 @@
     <script src="./code/buttons.js"></script>
     <script src="./code/clock.js"></script>
     <script src="./code/Multitest.js"></script>
+    <script src="./code/tasks.js"></script>
+
 </html>

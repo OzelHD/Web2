@@ -1,0 +1,84 @@
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    max-width: 90%;
+    background-color: #2a2a2a;
+    color: #fff;
+    padding: 1rem;
+    transform: translate(-50%, -50%);
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  }
+  .hidden {
+    display: none;
+  }
+  
+  .popup.hidden {
+    display: none;
+  }
+  
+  .popup .close-btn {
+    float: right;
+    cursor: pointer;
+    color: #aaa;
+  }
+  
+  .popup .close-btn:hover {
+    color: #fff;
+  }
+  .task-item {
+    cursor: pointer;
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 4px;
+    position: relative; /* so dropdown arrow can be inside */
+  }
+  
+  /* Default: not done (red) */
+  .task-not-done {
+    background-color: #550000;
+  }
+  
+  /* Done (green) */
+  .task-done {
+    background-color: #005500;
+  }
+  
+  /* Done but not submitted (orange) */
+  .task-done-not-submitted {
+    background-color: #553300;
+  }
+  
+  /* The small arrow for label changes */
+  .dropdown-arrow {
+    margin-left: 10px;
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+  .label-menu {
+    position: fixed; /* or absolute if you prefer relative positioning */
+    background: #333;
+    color: #fff;
+    padding: 0.5rem;
+    border-radius: 4px;
+    display: none;
+    z-index: 9999;
+  }
+  
+  .label-menu.show {
+    display: block;
+  }
+  
+  /* Example items */
+  .label-menu div {
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  .label-menu div:hover {
+    background: #444;
+  }
+  
+      

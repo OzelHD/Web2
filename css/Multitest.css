@@ -193,5 +193,31 @@ body {
     color: #aaa;
     margin-left: 0.5rem;
   }
+  textarea {
+    padding: 18px;
+    font-size: 16px;
+    border: 2px solid #ffffff37;
+    background: #28353a;
+    color: white;
+    border-radius: 16px;
+    width: 300px;
+    height: 56px;
+    resize: none;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    white-space: nowrap;
+    transition: border-color 0.6s ease-in-out;
+    text-align: center;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  textarea:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #ff9100;
+  }
   
   
