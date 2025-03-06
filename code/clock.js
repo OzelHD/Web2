@@ -26,10 +26,18 @@ const setClock = () => {
     sec.classList.add("flash-green");
     setTimeout(() => sec.classList.remove("flash-green"), 1000);
   }
-  if (mm === 0) {
+
+  if (min === 90) {   //lecture starts
     min.classList.add("flash-green");
     setTimeout(() => min.classList.remove("flash-green"), 60000);
   }
+
+  if (mm === 0) {     //lecture ends
+    min.classList.add("flash-green");
+    setTimeout(() => min.classList.remove("flash-green"), 60000);
+  }
+
+                      //Lunch (or midnight)
   if (day.getHours() % 12 === 0 && mm === 0 && ss === 0) {
     hour.classList.add("flash-green");
     setTimeout(() => hour.classList.remove("flash-green"), 3600000);
