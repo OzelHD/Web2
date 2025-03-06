@@ -24,6 +24,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 900999;
   }
   body.collapsed .header {
     margin-left: 0;
