@@ -42,7 +42,7 @@
     border: 2px solid var(--main-bg-color);
     position: absolute;
     border-radius: 50%;
-    z-index: 1000;
+    z-index: 800;
     transition: all ease 0.2s;
   }
   .hour,

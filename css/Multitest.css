@@ -24,7 +24,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 900999;
+    z-index: 900;
   }
   body.collapsed .header {
     margin-left: 0;
@@ -40,7 +40,7 @@ body {
     background: #101820;
     color: #fff;
     padding: 1rem;
-    z-index: 900;
+    z-index: 903;
     transition: width 0.3s ease-in-out, padding 0.3s ease;
     overflow: hidden;
   }
