@@ -9,14 +9,15 @@
   <link rel="stylesheet" href="./css/clock.css">
   <link rel="stylesheet" href="./css/buttons.css">
   <link rel="stylesheet" href="./css/tasks.css">
+  <link rel="stylesheet" href="./css/facetester.css">
 </head>
-<body>
+<body class="collapsed">
   <div class="container">
     <header class="header">
       <h1>Links & Files</h1>
     </header>
     
-    <aside class="sidebar">
+    <aside class="sidebar collapsed">
         <button class="toggle-sidebar-btn">&#9776;</button>
         <!-- Sidebar content with accordion menu -->
         <nav class="sidebar-content">
@@ -160,7 +161,6 @@
                       </a>
                       <span class="link-desc">Vorlesungsinhalt</span>
                       <li>
-                      <li>
                         <a href="https://drive.google.com/drive/folders/17p0oebQuSTWnvM8LjstWzIjAljm-5nGs" target="_blank" rel="noopener noreferrer">
                           G-Drive
                         </a>
@@ -225,20 +225,25 @@
         <div class="min"></div>
         <div class="sec"></div>
       </div>
+      
+      <div class="symbol_canvas">
+        <div class="face">
+            <div class="eye left"></div>
+            <div class="eye right"></div>
+            <div class="eyelid left"></div>
+            <div class="eyelid right"></div>
+            <div class="mouth"></div>
+            <div class="mouthi left"></div>
+            <div class="mouthi right"></div>
+        </div>
+    </div>
       <!-- Additional content here -->
-      <div class="text-content">
-        <p>
-            Wanna get <a href="index.html">back</a></li>?
-        </p>
-        
-        <div>
-          <textarea id="inputText" placeholder="Enter text here"></textarea>
-
+      <div class="text-content1">
+        <div class="inputText_main">
+          <textarea id="inputText" placeholder="Enter Google search here:"></textarea>
         </div>
 
-
-
-        <div class="task-timetable">
+        <!-- <div class="task-timetable">
           <table>
             <thead>
               <tr>
@@ -250,10 +255,9 @@
               </tr>
             </thead>
             <tbody id="task-table-body">
-              <!-- Rows and cells will be dynamically filled by JS -->
             </tbody>
           </table>
-        </div>
+        </div> -->
         
         <!-- Popup/Modal for task details -->
         <div id="task-info-popup" class="popup hidden">
@@ -266,9 +270,90 @@
           </div>
         </div>
 
+        <button id="navigatorButton" class="toggleButton rightButton">&#9776;</button>
+        <div id="navigatorContent">
+          <h3>Pages</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="game-of-life.html">Game of Life</a></li>
+            <li><a href="guess-the-number.html">Guess the Number</a></li>
+            <li><a href="Fac.html">Factory game</a></li>
+            <li><a href="latex.html">Latex converter</a></li>
+            <li><a href="i2.html">Links & FIles</a></li> 
+          </ul>
+        </div>
+        
+
+        <div class="deadlines">
+          <div class="marquee-container">
+            <div class="marquee-text">Deadlines</div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Bonus</th>
+                <th>Abgabe</th>
+                <th>Wo, Was?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Analysis2</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Mittwoch 14:00</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Moodle Stack Bonus Abgabe</td>
+              </tr>
+              <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Linalg2</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Freitag 10:00</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Sam-up Linalg Bonus</td>
+              </tr>
+              <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Physik</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Donnerstag 16:15</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Moodle Quiz</td>
+              </tr>
+              <tr>
+                <th>Serien</th>
+                <th></th>
+                <th></th>
+              </tr>
+              <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Analysis2</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Mittwoch 14:00</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Moodle Serie Abgabe</td>
+              </tr>
+              <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Linalg2</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Montag 14:00</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Metaphor Serie Abgabe</td>
+              </tr>
+              <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Physik</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Donnerstag 16:00</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Moodle Serie Abgabe</td>
+              </tr>
+              <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Mechanik</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Freitag 24:00</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Hausübung keine Abgabe</td>
+              </tr>
+              <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Maschinenkonstruktionen</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Mittwoch 24:00</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Hausübung keine Abgabe</td>
+              </tr>
+              <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Informatik</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Montag 20:00</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;Cockexpert Code aufgaben lösen</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         
 
         <p>
+
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.
           Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.
           Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.
@@ -322,5 +407,6 @@
     <script src="./code/clock.js"></script>
     <script src="./code/Multitest.js"></script>
     <script src="./code/tasks.js"></script>
+    <script src="./code/searcher.js"></script>
 
 </html>

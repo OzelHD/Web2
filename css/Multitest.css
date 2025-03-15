@@ -43,6 +43,7 @@ body {
     z-index: 903;
     transition: width 0.3s ease-in-out, padding 0.3s ease;
     overflow: hidden;
+    overflow-y: auto;
   }
 
 /* Container for sidebar content */
@@ -220,5 +221,71 @@ body {
     box-shadow: none;
     border-color: #ff9100;
   }
+  .inputText_main {
+    display: flex;
+    justify-content: center;
+  }
+  .deadlines {
+    border: 2px solid #ffffff37;
+    border-radius: 16px;
+    padding: 12px;
+    margin: 1rem 0;
+    background-color: #101820;
+    
+  }
   
+  .deadlines h2 {
+    margin-bottom: 1rem;
+    font-size: x-large;
+    color:#ff9100;
+    text-align: center;
+  }
   
+  .deadlines table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+  }
+  
+  .deadlines th,
+  .deadlines td {
+    border: 1px solid #ffffff98;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .deadlines th {
+    background-color: #000000;
+    color:#ff9100;
+  }
+
+  .marquee-container {
+    position: relative;  /* needed for .marquee-text's absolute position */
+    overflow: hidden;    /* hide the text when it goes off-screen */
+    width: 100%;         /* span the entire .deadlines width */
+    height: 2em;         /* give some height so text is visible */
+    border-bottom: 1px solid #ffffff50; /* optional: visual separator */
+    margin-bottom: 1rem; /* spacing below the marquee */
+  }
+  
+  /* The text that moves from right to left */
+  .marquee-text {
+    position: absolute;
+    white-space: nowrap;
+    left: 0%;
+    top: 50%;
+    transform: translateY(-50%);
+    
+    animation: marqueeMove 8s linear infinite;
+    color: #ff9100;
+    font-size: 2.2rem;
+  }
+  
+  @keyframes marqueeMove {
+    0% {
+      left: 100%;
+    }
+    100% {
+      left: -10%;
+    }
+  }

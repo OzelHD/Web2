@@ -1,0 +1,109 @@
+.symbol_canvas {
+  position: inherit;
+  width: 500px;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: #00000000;
+  margin: auto;
+}
+
+.face {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: #000;
+  box-shadow:
+      0 0 50px 10px rgba(98, 77, 239, 0.6),
+      0 0 70px 20px rgba(98, 77, 239, 0.4),
+      0 0 90px 40px rgba(98, 77, 239, 0.2);
+
+  /* Floaty animation */
+  animation: floaty 10s infinite ease-in-out;
+}
+
+.eye {
+  position: absolute;
+  top: 30%;
+  width: 30px;
+  height: 30px;
+  background: #fff;
+  border-radius: 50%;
+
+}
+
+.eye.left {
+  left: 20%;
+}
+
+.eye.right {
+  right: 20%;
+}
+
+.eyelid {
+  position: absolute;
+  top: 30%;
+  width: 30px;
+  height: 15px;
+  background: #000;
+  transition: 0.3s ease-in-out;
+  animation: blink 12s infinite ease-in-out;
+}
+
+.eyelid.left {
+  left: 20%;
+}
+
+.eyelid.right {
+  right: 20%;
+}
+
+.mouth {
+  position: absolute;
+  top: 37.5%;
+  left: 50%;
+  width: 20px;
+  height: 7px;
+  background: #fff;
+  transform: translateX(-50%);
+}
+
+.mouthi {
+  position: absolute;
+  top: 37.5%;
+  width: 7px;
+  height: 7px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.mouthi.left {
+  left: 43%;
+}
+
+.mouthi.right {
+  right: 43%;
+}
+
+/* KEYFRAMES */
+
+
+@keyframes floaty {
+  0%   { transform: translateX(0px) translateY(0px); }
+  25%  { transform: translateX(10px) translateY(5px); }
+  50%  { transform: translateX(0px) translateY(10px); }
+  75%  { transform: translateX(-10px) translateY(5px); }
+  100% { transform: translateX(0px) translateY(0px); }
+}
+
+@keyframes blink {
+  0%, 2%, 4%, 14%, 16%, 100% {
+      transform: translateY(-15px);
+  }
+  3%, 15% {
+      transform: translateY(0px);
+  }
+}
