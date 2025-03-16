@@ -226,6 +226,7 @@ body {
     justify-content: center;
   }
   .deadlines {
+    width: 1100px;
     border: 2px solid #ffffff37;
     border-radius: 16px;
     padding: 12px;
@@ -286,6 +287,6 @@ body {
       left: 100%;
     }
     100% {
-      left: -10%;
+      left: -15%;
     }
   }
