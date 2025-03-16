@@ -45,12 +45,12 @@
 
 .eyelid {
   position: absolute;
-  top: 30%;
+  top: 29%;
   width: 30px;
   height: 15px;
   background: #000;
   transition: 0.3s ease-in-out;
-  animation: blink 12s infinite ease-in-out;
+  animation: blink 9s infinite ease-in-out;
 }
 
 .eyelid.left {
