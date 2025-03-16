@@ -319,7 +319,7 @@
     --header-bg: #000;
     --header-text: #ff0;
     --sidebar-bg: #080808;
-    --sidebar-text: #ff0;
+    --sidebar-text: rgb(255, 255, 255);
     --toggle-bg: #ff9100;
     --toggle-text: #ffffff;
     --main-content-bg: #000;
@@ -327,10 +327,10 @@
     --footer-bg: #000;
     --footer-text: #ff9100;
     --example-color: #ff9100;
-    --accordion-hover: #ffffff;
-    --accordion-link-color: #ff0;
-    --accordion-link-hover: #ffffff;
-    --link-desc-color: #ff0;
+    --accordion-hover: #ff0;
+    --accordion-link-color: rgb(255, 255, 255);
+    --accordion-link-hover: #ff0;
+    --link-desc-color: rgba(255, 255, 255, 0.658);
     --textarea-border: #fff;
     --textarea-bg: #000;
     --textarea-text: #ff0;
