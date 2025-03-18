@@ -314,6 +314,7 @@
   
 
   .contrast-mode {
+    --master-yellow: #ffd500;
     /* mostly done */
     --bg-color: #000;
     --header-bg: #000;
@@ -334,7 +335,7 @@
     --textarea-border: #fff;
     --textarea-bg: #000;
     --textarea-text: #ff0;
-    --textarea-focus-border: #ff9100;
+    --textarea-focus-border: #ff0;
     --deadlines-border: #fff;
     --deadlines-bg: #000;
     --deadlines-heading: #ff9100;
@@ -356,10 +357,10 @@
     --face-shadow-1: rgba(255, 255, 0, 0.6);
     --face-shadow-2: rgba(255, 255, 0, 0.4);
     --face-shadow-3: rgba(255, 255, 0, 0.2);
-    --eye-bg: #ff0;
+    --eye-bg: rgb(255, 255, 255);
     --eyelid-bg: #000;
-    --mouth-bg: #ff0;
-    --mouthi-bg: #ff0;
+    --mouth-bg: rgb(255, 255, 255);
+    --mouthi-bg: rgb(255, 255, 255);
     --clock-bg: #000;
     --clock-text: #ff0;
     --clock-center: #ff0;
@@ -432,6 +433,14 @@
     );
     border-image-slice: 1; /* Tells the browser to use the entire gradient */
     animation: spin 3s linear infinite;
+  }
+  .sidebar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .sidebar {
+    -ms-overflow-style: none; /* Internet Explorer, Edge */
+    scrollbar-width: none; /* Firefox */
   }
 
   @property --angle{
