@@ -1,0 +1,8 @@
+.logo-shape {
+    width: 100px;
+    height: 100px;
+    background: blue;
+    clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+    border-radius: 20px;
+  }
+  
